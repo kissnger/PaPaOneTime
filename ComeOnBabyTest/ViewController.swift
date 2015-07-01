@@ -42,17 +42,20 @@ class ViewController: UIViewController {
   }
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "configKeyboardHeight:", name: UIKeyboardDidShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "configKeyboardHeight:", name: UIKeyboardWillShowNotification, object: nil)
   }
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: UIKeyboardDidShowNotification)
+    NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: UIKeyboardWillShowNotification)
   }
 
   func configKeyboardHeight(noti:NSNotification){
 
-//    let height = noti.userInfo
+    let dicInfo = noti.userInfo as? NSDictionary
+    let rect = dicInfo!.objectForKey(UIKeyboardFrameEndUserInfoKey) as!NSValue
 
+    let height = rect.CGRectValue().size.height
+    inputPenView.inputViewHeight = height
   }
 
 

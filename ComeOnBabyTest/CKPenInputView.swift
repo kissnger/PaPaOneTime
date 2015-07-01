@@ -24,7 +24,7 @@ class CKPenInputView: UIView {
 
   var inputViewHeight = CGFloat(308){
       didSet{
-        inputViewLayoutHeight.constant = inputViewHeight
+        inputViewLayoutHeight.constant = inputViewHeight + 50
       }
   }
 
